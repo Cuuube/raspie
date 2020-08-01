@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
     setColor(0x80, 0x80);
     delay(500);
 
-    printf("----- EMD -----");
+    printf("----- END -----");
     /* code */
     return 0;
 }

@@ -1,12 +1,8 @@
-// #include <wiringPi.h>
-// #include <softPwm.h>
 #include <stdio.h>
 
 // which gives you at least the -127 to 127 range. (-128 to 127 is common)
 // unsigned char, which gives you at least the 0 to 255 range.
 #define uchar unsigned char
-#define PIN_RED 0
-#define PIN_GREEN 1
 
 
 int main(int argc, char const *argv[])
