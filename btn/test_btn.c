@@ -2,15 +2,16 @@
 #include <softPwm.h>
 #include <stdio.h>
 
-#define PIN_BTN 7
+#define PIN_BTN 0
 
 
 int main(int argc, char const *argv[])
 {
-    printf("----- START -----");
+    printf("----- START -----\n");
+    int currentStatus = OUTPUT;
 
     if (wiringPiSetup() == -1) {
-        print("setup wiringPi failed!");
+        printf("setup wiringPi failed!");
         return -1;
     }
 
@@ -18,18 +19,22 @@ int main(int argc, char const *argv[])
 
     while(1)
     {
-        if (digitalRead(PIN_BTN) == INPUT)
+        delay(10);
+        int status = digitalRead(PIN_BTN);
+        // printf("Read status is %d, current status is %d !\n", status, currentStatus);
+        
+
+        if (status == INPUT && currentStatus != status)
         {
-            delay(10);
-            print('Btn down!');
+            printf("Btn down!\n");
+            currentStatus = status;
         }
-        else if (digitalRead(PIN_BTN) == OUTPUT)
+        else if (status == OUTPUT && currentStatus != status)
         {
-            print('Btn up!');
+            printf("Btn up!\n");
+            currentStatus = status;
         }
     }
-    printf("----- END -----");
+    printf("----- END -----\n");
     return 0;
 }
-
-
