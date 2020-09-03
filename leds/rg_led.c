@@ -10,8 +10,8 @@
 
 void init() {
     // 初始化
-    softPwmCreate(PIN_RED, 0, 100);
-    softPwmCreate(PIN_GREEN, 0, 100);
+    softPwmCreate(PIN_RED, 0x00, 0xff);
+    softPwmCreate(PIN_GREEN, 0x00, 0xff);
 }
 
 void setColor(uchar redValue, uchar greenValue) {
@@ -21,25 +21,24 @@ void setColor(uchar redValue, uchar greenValue) {
 
 int main(int argc, char const *argv[])
 {
-    printf("----- START -----");
+    printf("----- START -----\n");
 
     setColor(0xff, 0x00);
-    delay(500);
+    delay(2000);
 
     setColor(0x00, 0xff);
-    delay(500);
+    delay(2000);
 
     setColor(0xff, 0xff);
-    delay(500);
+    delay(2000);
 
     setColor(0x80, 0x80);
-    delay(500);
+    delay(2000);
 
     setColor(0x80, 0x80);
-    delay(500);
+    delay(2000);
 
-    printf("----- END -----");
-    /* code */
+    printf("----- END -----\n");
     return 0;
 }
 
