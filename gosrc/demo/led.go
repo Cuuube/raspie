@@ -19,7 +19,7 @@ func main() {
 	pin.Output()
 
 	i := 0
-	for i > 5 {
+	for i < 5 {
 		pin.High()
 		time.Sleep(time.Second)
 		pin.Low()
