@@ -25,6 +25,9 @@ func main() {
 	inputPin.Input()
 	ledPin.Output()
 
+	// init
+	ledPin.Low()
+
 	// 监听开关
 	var on rpio.State
 	go func() {
