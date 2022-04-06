@@ -18,8 +18,13 @@ func main() {
 	pin := rpio.Pin(4)
 	pin.Output()
 
-	for {
-		pin.Toggle()
+	i := 0
+	for i > 5 {
+		pin.High()
 		time.Sleep(time.Second)
+		pin.Low()
+		time.Sleep(time.Second)
+
+		i++
 	}
 }
