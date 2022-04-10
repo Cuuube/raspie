@@ -20,22 +20,43 @@ func main() {
 	}
 	defer rpio.Close()
 
-	pin := rpio.Pin(util.GPIO0)
-	pin.Pwm()
-	pin.Freq(60)
-	pin.DutyCycle(0, MAX_RANGE)
+	pin := rpio.Pin(util.GPIO24)
+	// pin.Mode(rpio.Pwm)
+	// pin.Freq(64000)
+	// pin.DutyCycle(0, 32)
 
-	var i uint32 = 0
-	for i < 255 {
-		pin.DutyCycle(i, MAX_RANGE)
+	// // the LED will be blinking at 2000Hz
+	// // (source frequency divided by cycle length => 64000/32 = 2000)
 
-		time.Sleep(time.Second / 255)
-		i++
+	// // five times smoothly fade in and out
+	// for i := 0; i < 5; i++ {
+	// 	for i := uint32(0); i < 32; i++ { // increasing brightness
+	// 		pin.DutyCycle(i, 32)
+	// 		time.Sleep(time.Second / 32)
+	// 	}
+	// 	for i := uint32(32); i > 0; i-- { // decreasing brightness
+	// 		pin.DutyCycle(i, 32)
+	// 		time.Sleep(time.Second / 32)
+	// 	}
+	// }
+
+	pin.Mode(rpio.Pwm)
+	pin.Freq(64000)
+	pin.DutyCycleWithPwmMode(0, 32, rpio.Balanced)
+	// the LED will be blinking at 2000Hz
+	// (source frequency divided by cycle length => 64000/32 = 2000)
+
+	// five times smoothly fade in and out
+	for i := 0; i < 5; i++ {
+		for i := uint32(0); i < 32; i++ { // increasing brightness
+			pin.DutyCycleWithPwmMode(i, 32, rpio.Balanced)
+			time.Sleep(time.Second / 32)
+		}
+		for i := uint32(32); i > 0; i-- { // decreasing brightness
+			pin.DutyCycleWithPwmMode(i, 32, rpio.Balanced)
+			time.Sleep(time.Second / 32)
+		}
 	}
-	for i >= 255 {
-		pin.DutyCycle(i, MAX_RANGE)
 
-		time.Sleep(time.Second / 255)
-		i--
-	}
+	pin.DutyCycleWithPwmMode(0, 32, rpio.Balanced)
 }
