@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"raspie/gosrc/util"
 	"time"
+
+	"github.com/Cuuube/raspie/gosrc/util"
 )
 
 // const TEMPERTURE_PATH = "./test"

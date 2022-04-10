@@ -1,4 +1,4 @@
-module raspie
+module github.com/Cuuube/raspie
 
 go 1.17
 

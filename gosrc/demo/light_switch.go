@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"raspie/gosrc/util"
+	"github.com/Cuuube/raspie/gosrc/util"
 
 	"github.com/stianeikeland/go-rpio/v4"
 )
